@@ -19,9 +19,6 @@ import static org.junit.Assert.fail;
  * ChangeCalculatorTest : Tester class for demonstrating class ChangeCalculator's recursive method
  * calculateChange(int), which determines and prints all possible coin combinations representing a given monetary
  * value in cents.
- *
- * @author King
- * @version 1.0
  */
 public class ChangeCalculatorTest {
 
@@ -31,7 +28,7 @@ public class ChangeCalculatorTest {
     /** Simple oin values to be tested (multiples of five). */
     private static final int[] FIVES = { 5, 10, 15, 20, 25, 30 };
     /** Numbers of unique coin combinations for simple multiples of five. */
-    private static final int[] FIVES_COMBINATIONS ={ 2, 4, 6, 9, 13,18 };
+    private static final int[] FIVES_COMBINATIONS = { 2, 4, 6, 9, 13, 18 };
 
     /** Larger coin values to be tested (multiples of five). */
     private static final int[] FIVES_LARGE = { 75, 80, 85, 90, 95, 100 };
@@ -46,7 +43,7 @@ public class ChangeCalculatorTest {
     /** Larger coin values to be tested (non-multiples of five). */
     private static final int[] OTHERS_LARGE = { 76, 79, 82, 91, 94, 97, 101 };
     /** Numbers of unique coin combinations for larger non-multiples of five. */
-    private static final int[] OTHERS_LARGE_COMBINATIONS= { 121, 121, 141, 187, 187, 213, 242 };
+    private static final int[] OTHERS_LARGE_COMBINATIONS = { 121, 121, 141, 187, 187, 213, 242 };
 
     // region ** Tests evaluating number of unique combinations **
 
@@ -84,8 +81,13 @@ public class ChangeCalculatorTest {
 
     @Test
     public void testDuplicates() {
+        // First verify that 75 cents yields 121 combinations
+        assertEquals("Test duplicates failed - Incorrect number of combinations.",
+                FIVES_LARGE_COMBINATIONS[0], ChangeCalculator.calculateChange(FIVES_LARGE[0]));
+
         // Set to contain lines read from "CoinCombinations.txt"
-        Set<String> combinations = new HashSet<String>();
+        // As a Set, this object's infrastructure prohibits the addition of duplicate elements
+        Set<String> combinations = new HashSet<String>(FIVES_LARGE_COMBINATIONS[0]);
 
         // Flag for reading possible duplicate values
         boolean readSuccess = true;
@@ -96,26 +98,26 @@ public class ChangeCalculatorTest {
         try (BufferedReader readIn = new BufferedReader(new FileReader(IN_FILE_NAME))) {
             String line = "";
 
-            // Read each line, building a collection of unique coin combinations found on each line of the
-            // generated text file
+            // Read each line, building a collection of unique coin combinations found
+            // on each line of the generated text file
             while ((line = readIn.readLine()) != null) {
                 // Sets to false if the addition of a duplicate element was attempted
                 readSuccess = combinations.add(line);
 
                 // If a duplicate value has been found
                 if (! readSuccess) {
-                    fail("Test failed - Perhaps duplicate combinations were written to this file?");
+                    fail("Test failed - Perhaps duplicate coin combinations were written to this file?");
                 }
             }
         }
         catch (FileNotFoundException fnfe) {
-            fail("Test duplicates failed - File not found. Verify that an existing file has been named accordingly. ");
+            fail("Test duplicates failed - File not found. Verify that an existing file has been named accordingly.");
         }
         catch (IOException ioe) {
-            fail("Test duplicates failed - Encountered an IO Exception.");
+            fail("Test duplicates failed - Unexpected IO Exception.");
         }
     }
 
-    // endregion ** Tests evaluating duplicate values **
+    // endregion ** Test evaluating duplicate values **
 
 } // End of class ChangeCalculatorTest
