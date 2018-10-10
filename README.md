@@ -36,7 +36,7 @@ Next, you will also implemenet the method `printCombinationsToFile(int)`, which 
 
 ``` 
 
-_The two methods will be tested using 5 cent increments between 5 cents and 30 cents, larger tests for 75 cents through 100, and values that are not multiples of 5 (3 through 101 cents). hint: 75 cents has 121 unique number of combinations._
+_The two methods will be tested using 5 cent increments between 5 cents and 30 cents, larger tests for 75 cents through 100, and values that are not multiples of 5 (3 through 101 cents). For example, 75 cents equates to 121 unique combinations._
 
 
 ----------
