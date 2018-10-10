@@ -1,8 +1,8 @@
 package edu.miracosta.cs113.change;
 
 /**
- * ChangeCalculatorInterface : Interface containing the recursive method calculateChange, which determines and prints
- * all possible coin combinations representing a given monetary value in cents.
+ * ChangeCalculator : Class containing the recursive method calculateChange, which determines and prints all
+ * possible coin combinations representing a given monetary value in cents.
  *
  * Problem derived from Koffman & Wolfgang's Data Structures: Abstraction and Design Using Java (2nd ed.):
  * Ch. 5, Programming Project #7, pg. 291.
